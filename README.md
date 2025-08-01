@@ -342,6 +342,4 @@ MIT License – see `LICENSE` file for details
 > ⚙️ Built with ❤️ for enterprise document intelligence and smart FAQ automation.
 
 ```
-
-Let me know if you'd like this `README.md` converted into a downloadable file or used in a GitHub repository.
 ```
