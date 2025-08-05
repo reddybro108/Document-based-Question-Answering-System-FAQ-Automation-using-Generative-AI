@@ -1,4 +1,3 @@
-Here is a **cleaned, styled, and professional `README.md`** for your project:
 **Document-based Question Answering System (FAQ Automation) using Generative AI**
 
 ---
