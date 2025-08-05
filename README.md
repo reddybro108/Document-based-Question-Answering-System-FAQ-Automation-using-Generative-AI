@@ -342,3 +342,274 @@ MIT License – see `LICENSE` file for details
 
 ```
 ```
+Here is a **professional `README.md` file** tailored to your repository and the enhancements we discussed, making it more suitable for industry-level standards:
+
+---
+
+```markdown
+# 📄 Document-based Question Answering System (FAQ Automation)
+
+An end-to-end enterprise-grade **Document-based Question Answering (QA)** system powered by **Generative AI** using **Retrieval-Augmented Generation (RAG)**. This system combines **semantic search**, **keyword-based retrieval**, and **LLM reasoning** to automate FAQs and enable contextual answers from uploaded documents.
+
+---
+
+## 🚀 Features
+
+- ✅ **Hybrid Retrieval**: Combines TF-IDF (lexical) and OpenAI Embeddings (semantic) for better recall
+- ✅ **RAG Architecture**: Retrieval-Augmented Generation via LangChain
+- ✅ **Multi-format Input**: Supports PDF, DOCX, TXT, HTML
+- ✅ **Modular Architecture**: Clean separation of core logic, API, preprocessing, and tuning
+- ✅ **Fine-tuning Ready**: Supports LoRA and QLoRA fine-tuning
+- ✅ **Serverless Deployment**: AWS Lambda, S3, and API Gateway
+- ✅ **FastAPI / Lambda API**: For real-time serving
+- ✅ **Monitoring & Logging**: API latency, token usage, and retrieval accuracy
+- ✅ **Security & Compliance**: Env-based secrets, PII redaction, IAM policies
+
+---
+
+## 🧠 Architecture Overview
+
+```
+
+User Query → HybridRetriever → RAG Engine → Prompt Template → LLM → Response
+
+Documents → Preprocessing → FAISS Index + TF-IDF → Retriever
+
+````
+
+> Built using **LangChain**, **OpenAI GPT-3.5/4**, **FAISS**, **scikit-learn**, and **PyTorch**
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer        | Technology |
+|--------------|------------|
+| LLMs         | OpenAI GPT-3.5 / GPT-4, HuggingFace models |
+| Retrieval    | FAISS, TF-IDF, OpenAI Embeddings |
+| Orchestration| LangChain |
+| API          | FastAPI / AWS Lambda |
+| Preprocessing| spaCy, NLTK |
+| Storage      | Amazon S3 |
+| Monitoring   | Python Logging, AWS CloudWatch |
+| CI/CD        | GitHub Actions |
+| Deployment   | Docker, Serverless, Localhost |
+
+---
+
+## 📁 Project Structure
+
+```bash
+document-qa-system/
+├── src/
+│   ├── core/              # Core logic (retrievers, pipeline, QA engine)
+│   ├── utils/             # Preprocessing, evaluation, embeddings
+│   ├── api/               # Lambda + FastAPI interface
+│   ├── fine_tuning/       # Prompt engineering, LoRA, QLoRA
+│   └── hybrid_retriever.py
+├── data/
+│   ├── documents/         # Input documents (PDF, TXT, etc.)
+│   ├── training_data/     # QA pairs for fine-tuning
+│   └── evaluation_datasets/
+├── config/
+│   ├── model_configs.yaml
+│   └── deployment_configs.yaml
+├── tests/                 # Unit and integration tests
+├── scripts/               # Utility scripts (deploy, preprocess)
+├── notebooks/             # Exploratory notebooks
+├── requirements.txt
+└── README.md
+````
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+* Python 3.9+
+* OpenAI API Key
+* AWS Account (for production deployment)
+* Docker (for local containerized use)
+
+---
+
+### Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/reddybro108/Document-based-Question-Answering-System-FAQ-Automation-using-Generative-AI.git
+cd document-qa-system
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+---
+
+### Environment Setup
+
+Create a `.env` file in the root:
+
+```env
+OPENAI_API_KEY=your-openai-key
+AWS_ACCESS_KEY_ID=your-aws-key
+AWS_SECRET_ACCESS_KEY=your-aws-secret
+AWS_DEFAULT_REGION=us-east-1
+FAISS_INDEX_PATH=./data/vector_store
+DEFAULT_MODEL=gpt-3.5-turbo
+```
+
+---
+
+## 💡 Usage
+
+```python
+from src.core.qa_engine import DocumentQAEngine
+
+qa = DocumentQAEngine()
+qa.load_documents("./data/documents/")
+response = qa.answer_question("What is the return policy?")
+print(response)
+```
+
+---
+
+## 🧪 Testing
+
+```bash
+pytest tests/
+```
+
+---
+
+## 🧰 Fine-tuning
+
+Supports:
+
+* LoRA fine-tuning (`lora_finetuning.py`)
+* QLoRA memory-efficient training (`qlora_finetuning.py`)
+* Custom prompt templates (`prompt_engineering.py`)
+
+---
+
+## 🧠 Hybrid Retriever (TF-IDF + Embeddings)
+
+```python
+from src.core.hybrid_retriever import HybridRetriever
+retriever = HybridRetriever(docs)
+results = retriever.retrieve("What are the safety requirements?")
+```
+
+---
+
+## 🐳 Docker Deployment
+
+```bash
+# Build the image
+docker build -t document-qa-system .
+
+# Run locally
+docker run -p 8000:8000 document-qa-system
+```
+
+---
+
+## ☁️ Cloud Deployment
+
+### AWS Lambda + API Gateway + S3
+
+```bash
+# Set up AWS CLI
+aws configure
+
+# Upload documents
+aws s3 cp ./data/documents/ s3://your-bucket-name/ --recursive
+
+# Deploy Lambda
+bash scripts/deploy_lambda.sh
+
+# Deploy API Gateway
+bash scripts/deploy_api_gateway.sh
+```
+
+---
+
+## 🔒 Security & Compliance
+
+* API key management via `.env`
+* IAM roles with least-privilege for Lambda and S3
+* HTTPS enforced via API Gateway
+* GDPR features (PII masking, retention policies)
+
+---
+
+## 📈 Monitoring
+
+* Token usage tracking
+* Response latency logs
+* Retrieval confidence scores
+* Query volume + cost estimation
+
+---
+
+## 🤝 Contributing
+
+```bash
+git checkout -b feature/my-feature
+git commit -m "Add feature"
+git push origin feature/my-feature
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🙏 Acknowledgements
+
+* [LangChain](https://github.com/hwchase17/langchain)
+* [OpenAI](https://openai.com)
+* [FAISS](https://github.com/facebookresearch/faiss)
+* [AWS](https://aws.amazon.com)
+
+---
+
+## 🔭 Roadmap
+
+* [ ] Multi-modal support (tables, images)
+* [ ] Feedback-based active learning
+* [ ] Multi-language QA support
+* [ ] Analytics dashboard (Streamlit)
+* [ ] Document upload interface
+
+---
+
+## 📬 Contact
+
+Feel free to open an issue or reach out:
+📧 [reddybro108@gmail.com](mailto:reddybro108@gmail.com)
+🔗 [GitHub](https://github.com/reddybro108)
+
+---
+
+> Built with ❤️ for real-world FAQ automation and document intelligence.
+
+```
+
+---
+
+Would you like me to:
+- Add this to your repo as a `README.md` file?
+- Create a matching `Dockerfile` and `docker-compose.yml`?
+- Help automate GitHub CI/CD for lint/test/deploy?
+
+Let me know how you'd like to proceed!
+```
